@@ -25,13 +25,11 @@ public class Cart {
 
 	//Currently this adds up the total number of items and then multiplies them by the various prices added together
 	public double totalPricePerItemType() {
-		double pricePerUnit  = 0;
-		double numberOfUnits = 0;
+		double totalPrice  = 0.0;
 		for(Item order : orders) {
-			pricePerUnit += order.getQuantity();
-			numberOfUnits += order.getPrice();
+			totalPrice += order.getQuantity() * order.getPrice();
 		}
-		return numberOfUnits * pricePerUnit;
+		return totalPrice;
 	}
 	
 	

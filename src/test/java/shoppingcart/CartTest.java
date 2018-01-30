@@ -18,16 +18,16 @@ public class CartTest {
 		Cart underTest = new Cart();
 		underTest.addOrder(new Item("", 0.0, 0));
 		int orderSize = underTest.listSize();
-		assertEquals(1, underTest.listSize());
+		assertEquals(1, orderSize);
 	}
 	
 	@Test
-	public void shouldAnotherOrder() {
+	public void shouldAddAnotherOrder() {
 		Cart underTest = new Cart();
 		underTest.addOrder(new Item("", 0.0, 0));
 		underTest.addOrder(new Item("", 0.0, 0));
 		int orderSize = underTest.listSize();
-		assertEquals(2, underTest.listSize());
+		assertEquals(2, orderSize);
 	}
 	
 	@Test
@@ -35,7 +35,7 @@ public class CartTest {
 		Cart underTest = new Cart();
 		underTest.addOrder(new Item("Toy", 0.0, 1));
 		int check = underTest.getTotalItems();
-		assertEquals(1, underTest.getTotalItems());
+		assertEquals(1, check);
 	}
 	
 	@Test
@@ -43,7 +43,7 @@ public class CartTest {
 		Cart underTest = new Cart();
 		underTest.addOrder(new Item("Toy", 0.0, 2));
 		int check = underTest.getTotalItems();
-		assertEquals(2, underTest.getTotalItems());
+		assertEquals(2, check);
 	}
 	
 	@Test
@@ -53,7 +53,7 @@ public class CartTest {
 		underTest.addOrder(new Item("Toy", 0.0, 1));
 		underTest.addOrder(new Item("Toy", 0.0, 1));
 		int check = underTest.getTotalItems();
-		assertEquals(3, underTest.getTotalItems());
+		assertEquals(3, check);
 	}
 	
 	@Test 
@@ -61,7 +61,7 @@ public class CartTest {
 		Cart underTest = new Cart();
 		underTest.addOrder(new Item("Toy", 1.5, 1));
 		double check = underTest.totalPricePerItemType();
-		assertEquals(1.5, underTest.totalPricePerItemType(), .001);
+		assertEquals(1.5, check, .001);
 	}
 	
 	@Test 
@@ -69,7 +69,7 @@ public class CartTest {
 		Cart underTest = new Cart();
 		underTest.addOrder(new Item("Toy", 1.5, 2));
 		double check = underTest.totalPricePerItemType();
-		assertEquals(3.0, underTest.totalPricePerItemType(), .001);
+		assertEquals(3.0, check, .001);
 	}
 	
 	@Test 
@@ -79,7 +79,17 @@ public class CartTest {
 		underTest.addOrder(new Item("Toy", 1.5, 2));
 		underTest.addOrder(new Item("Toy", 1.5, 2));
 		double check = underTest.totalPricePerItemType();
-		assertEquals(3.0, underTest.totalPricePerItemType(), .001);
+		assertEquals(9.0, check, .001);
+	}
+	
+	@Test 
+	public void shouldCalculatePriceThreeItemsOrderedWithDifferentPrices() {
+		Cart underTest = new Cart();
+		underTest.addOrder(new Item("Toy", 3.0, 6));
+		underTest.addOrder(new Item("Toy", 1.5, 2));
+		underTest.addOrder(new Item("Toy", 1.5, 2));
+		double check = underTest.totalPricePerItemType();
+		assertEquals(24.0, check, .001);
 	}
 	
 	//at some point we need to calculate cart price. That would be something like
