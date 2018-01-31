@@ -92,6 +92,40 @@ public class CartTest {
 		assertEquals(24.0, check, .001);
 	}
 	
+	@Test
+	public void shouldRemoveItem() {
+		Cart underTest = new Cart();
+		underTest.addOrder(new Item("Toy", 1.5, 2));
+		underTest.addOrder(new Item("Box", 2.0, 3));
+		underTest.removeOrderByItemIndex(1);
+		int orderSize = underTest.listSize();
+		assertEquals(1, orderSize);
+	}
+	
+	@Test
+	public void shouldRemoveItemByIndexTwo() {
+		Cart underTest = new Cart();
+		underTest.addOrder(new Item("Toy", 1.5, 2));
+		underTest.addOrder(new Item("Box", 2.0, 3));
+		underTest.addOrder(new Item("Box", 2.0, 3));
+		underTest.addOrder(new Item("Box", 2.0, 3));
+		underTest.removeOrderByItemIndex(2);
+		int orderSize = underTest.listSize();
+		assertEquals(3, orderSize);
+	}
+	
+	@Test
+	public void shouldRemoveItemByType() {
+		Cart underTest = new Cart();
+		underTest.addOrder(new Item("Toy", 1.5, 2));
+		underTest.addOrder(new Item("Box", 2.0, 3));
+		underTest.addOrder(new Item("Trinket", 2.0, 3));
+		underTest.addOrder(new Item("Shirt", 2.0, 3));
+		underTest.addOrder(new Item("Shirt", 2.0, 3));
+		underTest.removeOrderByItemName("Shirt");
+		int orderSize = underTest.listSize();
+		assertEquals(3, orderSize);
+	}
 	//at some point we need to calculate cart price. That would be something like
 	
 }
